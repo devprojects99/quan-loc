@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan Lộc · Hồ Sơ Phi Hành Gia</title>
+    <!-- Thêm font Space Grotesk cho tiêu đề đậm chất công nghệ -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Nền vũ trụ -->
+    <canvas id="space"></canvas>
+    <div class="glow-bg" id="glow"></div>
+
+    <!-- Thanh điều hướng -->
+    <nav class="glass-nav" aria-label="Điều hướng">
+        <a href="#home" data-tooltip="Khởi hành" class="active"><span>🚀</span></a>
+        <a href="#about" data-tooltip="Hộ chiếu"><span>🎫</span></a>
+        <a href="#map" data-tooltip="Chòm sao"><span>🌌</span></a>
+        <a href="#skills" data-tooltip="Kỹ năng"><span>⚙️</span></a>
+        <a href="#projects" data-tooltip="Dự án"><span>🛰️</span></a>
+        <a href="#log" data-tooltip="Nhật ký"><span>📖</span></a>
+        <a href="#heart" data-tooltip="Tín hiệu"><span>💗</span></a>
+        <a href="#guestbook" data-tooltip="Sổ lưu bút"><span>💌</span></a>
+        <a href="#contact" data-tooltip="Kênh liên lạc"><span>📡</span></a>
+    </nav>
+
+    <!-- Công cụ -->
+    <div class="tools glass-panel">
+        <button id="fxBtn" aria-pressed="true" title="Bật/Tắt Sao Băng">✦</button>
+        <button id="musicBtn" aria-pressed="false" title="Bật/Tắt Radar">♪</button>
+    </div>
+
+    <main>
+        <!-- SECTION 1: HERO -->
+        <header class="hero" id="home">
+            <div class="hero-content rv">
+                <div class="badge">HỒ SƠ PHI HÀNH GIA · 001</div>
+                <h1>NGUYỄN<br><span class="gradient-text">QUAN LỘC</span></h1>
+                <p class="role-wrap">Mình là <span id="role" class="typing-text"></span><span class="cursor">|</span></p>
+                
+                <div class="stats glass-card">
+                    <div class="stat-item"><strong>17</strong><span>Tuổi</span></div>
+                    <div class="stat-item"><strong>CNTT</strong><span>Ngành học</span></div>
+                    <div class="stat-item"><strong>∞</strong><span>Đam mê</span></div>
+                </div>
+                <a href="#about" class="btn-primary">Khám phá không gian →</a>
+            </div>
+            
+            <div class="hero-visual rv tilt-card">
+                <div class="orbit-container">
+                    <div class="ring outer-ring"></div>
+                    <div class="ring inner-ring"></div>
+                    <img src="hary.jpg" alt="Nguyễn Quan Lộc" class="avatar">
+                    <div class="floating-tag tag-1">Cần Thơ</div>
+                    <div class="floating-tag tag-2">Coder</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- SECTION 2: HỘ CHIẾU -->
+        <section id="about" class="section">
+            <div class="section-header rv">
+                <span class="mono">// 01 · HỘ CHIẾU VŨ TRỤ</span>
+                <h2>Dữ liệu cá nhân</h2>
+            </div>
+            <div class="passport glass-card rv tilt-card">
+                <p class="bio">Chào bạn, mình là Quan Lộc — một người trẻ thích những điều dịu dàng, có cảm xúc và mang hơi thở riêng. Mình yêu những bộ phim khiến tim mình xao động, những bản nhạc đi đúng vào tâm hồn, và những trang truyện mang lại cảm giác như đang được đặt lại giữa trời xanh.</p>
+                <div class="info-grid">
+                    <div class="info-box"><span class="label">Họ tên</span><span class="value">Nguyễn Quan Lộc</span></div>
+                    <div class="info-box"><span class="label">Hành tinh</span><span class="value">Cần Thơ</span></div>
+                    <div class="info-box"><span class="label">Học viện</span><span class="value">CĐ Viễn Đông</span></div>
+                    <div class="info-box"><span class="label">Trạng thái</span><span class="value highlight">Đang theo đuổi 💗</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: BẢN ĐỒ -->
+        <section id="map" class="section">
+            <div class="section-header rv">
+                <span class="mono">// 02 · BẢN ĐỒ CHÒM SAO</span>
+                <h2>Sở thích hệ mặt trời</h2>
+            </div>
+            <div class="constellation-grid rv">
+                <div class="sky-map glass-card">
+                    <svg viewBox="0 0 100 100" class="star-lines">
+                        <polyline points="20,30 50,70 80,30" />
+                        <polyline points="20,30 80,30" />
+                    </svg>
+                    <button class="star-node" style="left:20%; top:30%" data-index="0">🎬</button>
+                    <button class="star-node" style="left:50%; top:70%" data-index="1">🎧</button>
+                    <button class="star-node" style="left:80%; top:30%" data-index="2">📖</button>
+                </div>
+                <div class="star-info glass-card tilt-card">
+                    <h3 id="starTitle" class="gradient-text">Chọn một vì sao</h3>
+                    <p id="starDesc">Khám phá những dải ngân hà trong tâm hồn mình.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.5: KỸ NĂNG -->
+        <section id="skills" class="section">
+            <div class="section-header rv">
+                <span class="mono">// 02 · KỸ NĂNG</span>
+                <h2>Đam mê và kỹ năng</h2>
+            </div>
+            <div class="skills-wrap rv">
+                <div class="skill-card glass-card tilt-card">
+                    <div class="skill-head">
+                        <span>HTML & CSS</span>
+                        <strong>85%</strong>
+                    </div>
+                    <div class="progress"><i style="width: 85%"></i></div>
+                </div>
+                <div class="skill-card glass-card tilt-card">
+                    <div class="skill-head">
+                        <span>JavaScript</span>
+                        <strong>72%</strong>
+                    </div>
+                    <div class="progress"><i style="width: 72%"></i></div>
+                </div>
+                <div class="skill-card glass-card tilt-card">
+                    <div class="skill-head">
+                        <span>Figma / UI</span>
+                        <strong>68%</strong>
+                    </div>
+                    <div class="progress"><i style="width: 68%"></i></div>
+                </div>
+                <div class="skill-card glass-card tilt-card">
+                    <div class="skill-head">
+                        <span>Python</span>
+                        <strong>35%</strong>
+                    </div>
+                    <div class="progress"><i style="width: 35%"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3.5: DỰ ÁN -->
+        <section id="projects" class="section">
+            <div class="section-header rv">
+                <span class="mono">// 03 · DỰ ÁN & TRẢI NGHIỆM</span>
+                <h2>Những thứ mình đã làm</h2>
+            </div>
+            <div class="project-grid rv">
+                <article class="project-card glass-card tilt-card">
+                    <div class="project-icon">🌐</div>
+                    <h3>Website cá nhân</h3>
+                    <p>Trang portfolio để lưu trữ cảm hứng, thông tin bản thân và các dự án nhỏ mình đang xây dựng.</p>
+                </article>
+                <article class="project-card glass-card tilt-card">
+                    <div class="project-icon">💻</div>
+                    <h3>UI/UX mini</h3>
+                    <p>Thử sức với thiết kế tư duy, layout, màu sắc, và trải nghiệm người dùng mượt mà hơn.</p>
+                </article>
+                <article class="project-card glass-card tilt-card">
+                    <div class="project-icon">🎧</div>
+                    <h3>Music project</h3>
+                    <p>Ghi lại cảm xúc của mình qua âm nhạc và thử biến từng trạng thái vào một giai điệu riêng.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECTION 4: NHẬT KÝ -->
+        <section id="log" class="section">
+            <div class="section-header rv">
+                <span class="mono">// 03 · NHẬT KÝ HÀNH TRÌNH</span>
+                <h2>Các trạm dừng chân</h2>
+            </div>
+            <div class="timeline rv">
+                <div class="time-node glass-card tilt-card">
+                    <div class="node-icon">🌾</div>
+                    <div class="node-content">
+                        <span class="mono">TRẠM 01</span>
+                        <h3>Cần Thơ</h3>
+                        <p>Miền Tây với sông nước, chợ nổi và hoàng hôn lấp lánh. Nơi đó luôn giữ một phần rất riêng trong lòng mình.</p>
+                    </div>
+                </div>
+                <div class="time-node glass-card tilt-card">
+                    <div class="node-icon">🎓</div>
+                    <div class="node-content">
+                        <span class="mono">TRẠM 02</span>
+                        <h3>Cao đẳng Viễn Đông</h3>
+                        <p>Bắt đầu khám phá một thế giới mới: nơi từng dòng code có thể mở ra những con đường không ngờ tới.</p>
+                    </div>
+                </div>
+                <div class="time-node glass-card tilt-card">
+                    <div class="node-icon">📌</div>
+                    <div class="node-content">
+                        <span class="mono">TRẠM 03</span>
+                        <h3>Hành trình đang đi</h3>
+                        <p>Mình đang cố gắng sống chậm lại, quan sát nhiều hơn, và giữ lại những điều đẹp trong từng ngày: học tập, sáng tạo, nghe nhạc, và giữ một tâm hồn không quá vội.</p>
+                        <div class="mini-tags">
+                            <span>Code</span>
+                            <span>Âm nhạc</span>
+                            <span>Đọc truyện</span>
+                            <span>Đi đánh cầu lông</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="time-node glass-card tilt-card">
+                    <div class="node-icon">🌙</div>
+                    <div class="node-content">
+                        <span class="mono">TRẠM 04</span>
+                        <h3>Đêm yên</h3>
+                        <p>Một buổi tối không cần quá ồn ào. Chỉ cần một góc sáng, một bản nhạc, và một mình có thể nghe được tiếng tim mình đang nói gì.</p>
+                        <div class="mini-tags">
+                            <span>Nghe nhạc</span>
+                            <span>Thư giãn</span>
+                            <span>Trầm tư</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="time-node glass-card tilt-card">
+                    <div class="node-icon">✨</div>
+                    <div class="node-content">
+                        <span class="mono">TRẠM 05</span>
+                        <h3>Những điều muốn giữ</h3>
+                        <p>Mình muốn giữ lại sự chân thành, sự dịu dàng và những ngày được sống thật với cảm xúc của mình. Đó là thứ mình tin là đẹp nhất.</p>
+                        <div class="mini-tags">
+                            <span>Niềm tin</span>
+                            <span>Chân thành</span>
+                            <span>Tự do</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: TÍN HIỆU -->
+        <section id="heart" class="section">
+            <div class="section-header rv text-center">
+                <span class="mono">// 04 · TÍN HIỆU TRÁI TIM</span>
+                <h2>Radar cảm xúc</h2>
+            </div>
+            <div class="radar-box rv">
+                <div class="radar-rings">
+                    <i></i><i></i><i></i>
+                    <div class="radar-core">💗</div>
+                </div>
+                <p class="radar-text glass-card">Trái tim mình đã có một người đặc biệt, và mình đang theo đuổi bằng tất cả sự chân thành. Mong tín hiệu này đến nơi nhẹ như một sao băng rơi trên vai người ấy.</p>
+                
+                <!-- Khu vực chứa Video Nhạc -->
+                <div class="music-signal glass-card tilt-card">
+                    <h3 class="gradient-text">🎵 Một giai điệu cho người ở xa</h3>
+                    <p class="music-note">Đây là bài nhạc đầu tiên mình từng làm, và nó kể về một tình yêu đơn phương, một khoảng cách không quá gần nhưng vẫn đủ để khiến người ta nhớ. Có những cảm xúc được giữ kín, như một lời nhắn gửi từ rất xa, nhẹ như gió và chạm vào tim rất lâu.</p>
+                    <div class="video-container">
+                        <video controls>
+                            <source src="video_thuong_ve_xu_quang_anh_moi.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ thẻ video.
+                        </video>
+                    </div>
+                    <p class="caption">"Thương về Xứ Quảng..."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: SỔ LƯU BÚT -->
+        <section id="guestbook" class="section">
+            <div class="section-header rv text-center">
+                <span class="mono">// 06 · SỔ LƯU BÚT</span>
+                <h2>Nhắn cho mình một lời</h2>
+            </div>
+            <div class="guestbook-box rv glass-card">
+                <div class="guestbook-list" id="guestbookList">
+                    <div class="guestbook-item">
+                        <strong>Quan Lộc</strong>
+                        <p>Chúc mọi đường đi đều có ánh sáng và những điều đẹp đến đúng lúc.</p>
+                    </div>
+                </div>
+                <div class="guestbook-toolbar">
+                    <button type="button" class="guestbook-clear" id="clearGuestbook">Xóa tất cả</button>
+                    <button type="button" class="guestbook-btn guestbook-open" id="openGuestbook">Gửi lời nhắn</button>
+                </div>
+
+                <div class="guestbook-modal" id="guestbookModal" aria-hidden="true">
+                    <div class="guestbook-modal-backdrop" data-close="true"></div>
+                    <div class="guestbook-modal-panel glass-card" role="dialog" aria-modal="true" aria-labelledby="guestbookTitle">
+                        <button type="button" class="guestbook-close" id="closeGuestbook" aria-label="Đóng">✕</button>
+                        <h3 id="guestbookTitle">Gửi lời nhắn</h3>
+                        <form class="guestbook-form" id="guestbookForm">
+                            <div class="field-group">
+                                <label for="guestName">Tên của bạn</label>
+                                <input id="guestName" name="guestName" type="text" maxlength="30" placeholder="Nhập tên của bạn" required>
+                            </div>
+                            <div class="field-group">
+                                <label for="guestMessage">Lời nhắn</label>
+                                <textarea id="guestMessage" name="guestMessage" rows="4" maxlength="180" placeholder="Viết một lời nhắn thật dịu dàng..." required></textarea>
+                            </div>
+                            <div class="guestbook-actions">
+                                <button type="button" class="guestbook-cancel" id="cancelGuestbook">Huỷ</button>
+                                <button type="submit" class="guestbook-btn">Gửi lời nhắn</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: LIÊN LẠC -->
+        <section id="contact" class="section">
+            <div class="section-header rv text-center">
+                <span class="mono">// 07 · KÊNH LIÊN LẠC</span>
+                <h2>Kết nối trạm không gian</h2>
+            </div>
+            <div class="social-grid rv">
+                <a href="https://www.tiktok.com/@quanloc110" target="_blank" class="social-card glass-card tilt-card">
+                    <div class="s-icon">🎵</div>
+                    <div class="s-info">
+                        <b>TikTok</b>
+                        <span>9th9</span>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/quan_loc2009/" target="_blank" class="social-card glass-card tilt-card">
+                    <div class="s-icon">📸</div>
+                    <div class="s-info">
+                        <b>Instagram</b>
+                        <span>@quan_loc2009</span>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/share/1KJoidtDug/?mibextid=wwXIfr" target="_blank" class="social-card glass-card tilt-card">
+                    <div class="s-icon">📘</div>
+                    <div class="s-info">
+                        <b>Facebook</b>
+                        <span>Trang cá nhân</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Phát tín hiệu từ Trái Đất 🌍 bởi <strong>Nguyễn Quan Lộc</strong></p>
+        <small>Hệ thống tự động ghi nhận tọa độ truy cập.</small>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

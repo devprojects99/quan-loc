@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard truy cập</title>
+  <link rel="stylesheet" href="/dashboard.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Dashboard truy cập</h1>
+    <p>Danh sách truy cập cập nhật theo thời gian thực. Vị trí suy ra từ IP chỉ mang tính ước lượng (cấp thành phố/nhà mạng).</p>
+    <button id="clearBtn" class="clear-btn">Xóa toàn bộ lịch sử</button>
+    <div class="stats">
+      <div class="stat">
+        <span class="muted">Tổng lượt truy cập</span>
+        <strong id="totalVisits">0</strong>
+      </div>
+      <div class="stat">
+        <span class="muted">Quốc gia</span>
+        <strong id="countryCount">0</strong>
+      </div>
+      <div class="stat">
+        <span class="muted">Cập nhật cuối</span>
+        <strong id="lastVisit">—</strong>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Thời gian</th>
+            <th>IP</th>
+            <th>Vị trí</th>
+            <th>Thiết bị / Trình duyệt</th>
+            <th>Nhà mạng</th>
+            <th>Referrer</th>
+          </tr>
+        </thead>
+        <tbody id="visitTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    let visits = [];
+
+    function render() {
+      const table = document.getElementById('visitTable');
+      document.getElementById('totalVisits').textContent = String(visits.length);
+      const countries = new Set(visits.filter(v => v.country && !['Unknown','Local'].includes(v.country)).map(v => v.country));
+      document.getElementById('countryCount').textContent = String(countries.size);
+      document.getElementById('lastVisit').textContent = visits[0] ? new Date(visits[0].visitedAt).toLocaleString('vi-VN') : '—';
+
+      if (!visits.length) {
+        table.innerHTML = '<tr><td colspan="6" class="muted">Chưa có dữ liệu truy cập nào.</td></tr>';
+        return;
+      }
+      table.innerHTML = visits.map(item => {
+        const place = [item.city, item.region, item.country].filter(x => x && x !== 'Unknown').join(', ') || 'Unknown';
+        const map = (item.latitude != null && item.longitude != null)
+          ? ` <a class="muted" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps?q=${encodeURIComponent(item.latitude)},${encodeURIComponent(item.longitude)}">(bản đồ)</a>` : '';
+        return `
+        <tr>
+          <td>${esc(new Date(item.visitedAt).toLocaleString('vi-VN'))}</td>
+          <td><span class="pill">${esc(item.ip || 'Unknown')}</span></td>
+          <td>${esc(place)}${map}</td>
+          <td>${esc(item.device || '')} · ${esc(item.browser || 'Unknown')}</td>
+          <td class="muted">${esc(item.org || '—')}</td>
+          <td class="muted">${esc(item.referrer || 'Direct')}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    async function loadVisits() {
+      const res = await fetch('/api/visits');
+      if (res.ok) { visits = await res.json(); render(); }
+    }
+
+    const es = new EventSource('/api/stream');
+    es.onmessage = (e) => { visits.unshift(JSON.parse(e.data)); render(); };
+    es.onerror = () => { /* trình duyệt tự kết nối lại */ };
+
+    document.getElementById('clearBtn').addEventListener('click', async () => {
+      if (!confirm('Xóa toàn bộ lịch sử truy cập?')) return;
+      await fetch('/api/visits/clear', { method: 'POST', headers: { 'x-admin-action': 'clear' } });
+      loadVisits();
+    });
+
+    loadVisits();
+  </script>
+</body>
+</html>
